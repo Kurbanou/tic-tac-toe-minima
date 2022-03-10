@@ -10,21 +10,29 @@
     width: 40vw;
     gap: 5px;
 }
-.ceil{
+.cell{
+    position: relative;
     width: calc(40vw/3 - 5px);
-    height: calc(40vw/3 - 5px); 
-    border-radius: 4px;   
-    /* background-color: rgb(152, 200, 7); */
+    height: calc(40vw/3 - 5px);
+    border-radius: 4px;
     background-color: #cce483;
     color: var(--X);
-    box-shadow: 1px 1px 3px rgba(0,0,0,0.5);     
-    transition: all .2s ease-in;  
+    box-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    transition: all .2s ease-in;
     opacity: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size:calc(40vw/3 - 5px);
+    font-family: Montserrat;
+
 }
-.ceil:hover{
-    /* background-color: #cce483; */
+.cell:hover{
     background-color: rgb(152, 200, 7);
 }
 .show{
     opacity: 1;
+}
+.active{
+    background-color: rgb(152, 200, 7);
 }
