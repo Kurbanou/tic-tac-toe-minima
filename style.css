@@ -1,0 +1,30 @@
+@import url(./assets/css/page.css);
+
+
+
+
+.game {
+    display: flex;
+    /* flex-direction: column ; */
+    flex-wrap: wrap;
+    width: 40vw;
+    gap: 5px;
+}
+.ceil{
+    width: calc(40vw/3 - 5px);
+    height: calc(40vw/3 - 5px); 
+    border-radius: 4px;   
+    /* background-color: rgb(152, 200, 7); */
+    background-color: #cce483;
+    color: var(--X);
+    box-shadow: 1px 1px 3px rgba(0,0,0,0.5);     
+    transition: all .2s ease-in;  
+    opacity: 0;
+}
+.ceil:hover{
+    /* background-color: #cce483; */
+    background-color: rgb(152, 200, 7);
+}
+.show{
+    opacity: 1;
+}

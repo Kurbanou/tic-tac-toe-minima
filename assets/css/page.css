@@ -1,0 +1,29 @@
+:root{
+    --bg-color:#fff;
+    --bg-orange:#f78166;
+    --bg-yellow:#f1e05a;
+    --bg-blue:#58a6ff;
+    --bg-green:#238636;
+    --font:#6E7781;
+    --X:#edd812;  
+    --color: #555;  
+  }
+  body {
+    background-color: var(--bg-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 100vh;
+    color: var(--font)
+
+  }
+  * {
+    margin: 0;
+    padding: 0;
+  }
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
