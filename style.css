@@ -1,19 +1,26 @@
 @import url(./assets/css/page.css);
 
 
-
-
-.game {
+.game__container{
     display: flex;
-    /* flex-direction: column ; */
+
+}
+main{
+    width: 100%;
+}
+.table{
+    flex: 50%;
+}
+.game {    
+    display: flex;    
     flex-wrap: wrap;
-    width: 40vw;
+    width: var(--gameWidth);      
     gap: 5px;
 }
 .cell{
-    position: relative;
-    width: calc(40vw/3 - 5px);
-    height: calc(40vw/3 - 5px);
+    position: relative;  
+    width: calc(var(--gameWidth)/var(--callCell) - (var(--callCell) - 1)*5px);
+    height: calc(var(--gameWidth)/var(--callCell) - (var(--callCell) - 1)*5px);
     border-radius: 4px;
     background-color: #cce483;
     color: var(--X);
@@ -23,7 +30,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size:calc(40vw/3 - 5px);
+    font-size:calc(var(--gameWidth)/var(--callCell) - 5px);
     font-family: Montserrat;
 
 }

@@ -6,6 +6,7 @@ const ai = 'O', player = 'X'
 
 class Game {
     constructor(size = 3){
+        document.documentElement.style.setProperty('--callCell', size);        
         this.size = size
         this.turn = Math.floor(Math.random() * 2)
         this.turnCount = 0
@@ -48,12 +49,12 @@ class Game {
     humanPlay(){        
         return e => {            
             const id = e.target.getAttribute('data-id')
-            if(this.cellList[+id].innerHTML !== 'O' && this.cellList[+id].innerHTML !== 'X'){
+            if(!this.cellList[+id].innerHTML && !this.checkWinner(this.board,player) && !this.checkWinner(this.board, ai)){
                 this.turnCount += 1
                 this.board[+id] = player
                 this.cellList[+id].innerHTML = `${player}`
                 this.cellList[+id].classList.add('active')           
-                if(this.turnCount >= this.limit){
+                if(this.turnCount === this.limit && !this.checkWinner(this.board,player) && !this.checkWinner(this.board, ai)){
                     result.innerHTML = `Draw!`
                     return
                 }
@@ -83,16 +84,18 @@ class Game {
       }
 
     checkWinner(board, who){
-        if( board[0] === who && board[1] === who && board[2] === who ||
-            board[3] === who && board[4] === who && board[5] === who ||
-            board[6] === who && board[7] === who && board[8] === who ||
-            board[0] === who && board[3] === who && board[6] === who ||
-            board[1] === who && board[4] === who && board[7] === who ||
-            board[2] === who && board[5] === who && board[8] === who ||
-            board[0] === who && board[4] === who && board[8] === who ||
-            board[2] === who && board[4] === who && board[6] === who ){
-            return true
-        }
+        if (this.size === 3){
+            if( board[0] === who && board[1] === who && board[2] === who ||
+                board[3] === who && board[4] === who && board[5] === who ||
+                board[6] === who && board[7] === who && board[8] === who ||
+                board[0] === who && board[3] === who && board[6] === who ||
+                board[1] === who && board[4] === who && board[7] === who ||
+                board[2] === who && board[5] === who && board[8] === who ||
+                board[0] === who && board[4] === who && board[8] === who ||
+                board[2] === who && board[4] === who && board[6] === who ){
+                return true
+            }
+        }        
         return false
     }
 
