@@ -28,7 +28,7 @@ class Game {
             cell.setAttribute('data-id', i-1)
             cell.classList.add('cell')
             game.appendChild(cell)
-            cell.addEventListener('click', this.humanPlay())
+            cell.addEventListener('click', this.humanPlay())            
             this.cellList.push(cell)
             setTimeout(function(){
                 cell.classList.add('show')
@@ -45,31 +45,33 @@ class Game {
         this.init()
     }
 
-    humanPlay(){
-        return e => {
-            this.turnCount += 1
+    humanPlay(){        
+        return e => {            
             const id = e.target.getAttribute('data-id')
-            this.board[+id] = player
-            this.cellList[+id].innerHTML = `${player}`
-            this.cellList[+id].classList.add('active')
-            if(this.turnCount >= this.limit){
-                result.innerHTML = `Draw!`
-                return
-            }
-            if(this.checkWinner(this.board,player)){
-                result.innerHTML = `You win!`
-                return
-            }
-            const bestMove = this.minimax(this.board, ai)
-            console.log(bestMove)
-        }
+            if(this.cellList[+id].innerHTML !== 'O' && this.cellList[+id].innerHTML !== 'X'){
+                this.turnCount += 1
+                this.board[+id] = player
+                this.cellList[+id].innerHTML = `${player}`
+                this.cellList[+id].classList.add('active')           
+                if(this.turnCount >= this.limit){
+                    result.innerHTML = `Draw!`
+                    return
+                }
+                if(this.checkWinner(this.board,player)){
+                    result.innerHTML = `You win!`
+                    return
+                }         
+                this.makeAiTurn()
+            }  
+        }  
     }
 
     makeAiTurn() {
         this.turnCount += 1
         const bestMove = this.minimax(this.board, ai)
-        this.board[bestMove.idx] = ai
-        this.cellList[bestMove.idx].innerHTML = `<span>${ai}</span>`
+        this.board[bestMove.index] = ai
+        this.cellList[bestMove.index].innerHTML = `${ai}`
+        this.cellList[bestMove.index].classList.add('active')
         if (this.turnCount >= this.limit) {
           result.innerHTML = `Draw!`
           return
@@ -144,15 +146,13 @@ class Game {
                 bestMove = i
               }
             }
-          }
-
-
-
+          }       
+     
         return moves[bestMove]
     }
 
     findEmptyCells(board){
-        return board.filter(c => c !== ai && c !== player)
+        return board.filter(c => c !== ai && c !== player)        
     }
 }
 
