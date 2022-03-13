@@ -1,28 +1,82 @@
 @import url(./assets/css/page.css);
 
 
-.game__container{
-    display: flex;
+/* game */
 
-}
-main{
-    width: 100%;
-}
-.table{
-    flex: 50%;
-}
-.game {    
-    display: flex;    
+
+
+
+.game {
+    display: flex;
     flex-wrap: wrap;
-    width: var(--gameWidth);      
+    justify-content: center;
+    width: var(--gameWidth);
     gap: 5px;
 }
+
+.newGame,
+.startGame{
+    margin-top: 30px;
+    width: var(--gameWidth);
+    border: 2px solid var(--font);
+    font-family: PT Sans;
+    text-transform: uppercase;
+    text-align: center;
+    user-select: none;
+    cursor: pointer;
+    font-size: 1em;
+    line-height: 2em;
+    font-weight: 700;
+    color: var(--font);
+    /* transition: all 0.35s cubic-bezier(0.19, 1, 0.22, 1); */
+    transition: all 0.2s ;
+}
+.newGame:hover,
+.startGame:hover{
+    font-family: Montserrat;
+    box-shadow: inset -175px 0 0 0 var(--bg-green-lite), inset 175px 0 0 0 var(--bg-green-lite);
+    color: white;
+    border: 2px solid var(--bg-green-lite);
+}
+.newGame{
+    opacity: 0;
+    transform: translate3d(0, 36px, 0);
+}
+
+.popup{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top:0;
+    left:0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: -1;
+    background: rgba(255,255,255,0.8);
+    opacity: 0;
+}
+
+.result{
+    color: var(--font);
+    font-family: Montserrat;
+    font-weight: 700;
+    font-size: 1em;
+    line-height: 2em;
+    text-transform: uppercase;
+    user-select: none;
+}
+
 .cell{
-    position: relative;  
+    position: relative;
+    user-select: none;
     width: calc(var(--gameWidth)/var(--callCell) - (var(--callCell) - 1)*5px);
     height: calc(var(--gameWidth)/var(--callCell) - (var(--callCell) - 1)*5px);
     border-radius: 4px;
-    background-color: #cce483;
+    background-color: var(--bg-green-lite);
     color: var(--X);
     box-shadow: 1px 1px 3px rgba(0,0,0,0.5);
     transition: all .2s ease-in;
@@ -35,11 +89,13 @@ main{
 
 }
 .cell:hover{
-    background-color: rgb(152, 200, 7);
+    background-color: var(--bg-green);
 }
 .show{
     opacity: 1;
+    transform: translate3d(0, 0, 0);
+    z-index: 2;
 }
 .active{
-    background-color: rgb(152, 200, 7);
+    background-color: var(--bg-green);
 }
