@@ -10,6 +10,19 @@
   --color: #555;
   --callCell:3;
   --gameWidth:350px;
+  --white-o50: rgba(6, 10, 19, .50);
+  --page-bg-color: #ddd;
+  --page-title-color: #2c88dd;
+  --primary-color: #2c88dd;
+  --white-o5: rgba(6, 10, 19, .05);
+  --white-o10: rgba(6, 10, 19, .10);
+  --white-o25: rgba(6, 10, 19, .50);
+  --white-o50: rgba(6, 10, 19, .50);
+  --white: rgb(6, 10, 19);
+  --black-o15: rgba(221, 221, 221, .15);
+  --black-o25: rgba(221, 221, 221, .25);
+  --black-o95: #DDDDDDEE;
+  --black: #ddd;
 }
 
 body {
@@ -18,6 +31,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: center;
   min-height: 100vh;
   color: var(--font)
 }
@@ -108,10 +122,10 @@ li.by::after{
 }
 .wrapper{
   display: grid;
+  height: 100%;
 }
 
 section{
-
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -125,17 +139,27 @@ section{
   grid-row-start:1;
   transition: all .35s cubic-bezier(0.19, 1, 0.22, 1);
   transform: translateX(0%);
-  height: auto;
 }
 .right{
-  transform: translateX(103%);
+  transform: translateX(110%);
   height: 0;
 }
 
 .left{
-  transform: translateX(-103%);
+  transform: translateX(-110%);
   height: 0;
 }
+
+main{
+  flex: auto;
+}
+.score__inner{
+
+}
+
+
+
+
 
 
 
@@ -146,6 +170,7 @@ footer{
   font-size: 14px;
   color: var(--font);
   font-family: PT Sans;
+  /* margin: 0; */
 }
 
 footer a{
@@ -156,8 +181,12 @@ footer a{
 a:hover{
   color: black;
 }
+footer{
+  width: 100%;
+}
 
 .footer__inner{
+
   gap: 20px;
   display: flex;
   width: 100%;

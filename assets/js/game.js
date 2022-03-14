@@ -14,6 +14,8 @@ class Game {
         this.size = size
         this.turn = Math.floor(Math.random() * 2)
         this.turnCount = 0
+        this.gameId = 0
+
 
         newGame.addEventListener('click', () =>{
             this.resetGame()
@@ -48,6 +50,7 @@ class Game {
     }
 
     resetGame(){
+        console.log(this.gameId)
         this.board = [...Array(this.limit).keys()]
         result.innerHTML = ''
         game.innerHTML = ''
@@ -55,6 +58,8 @@ class Game {
         this.cellList = []
         this.init()
         startGame.style.display = 'block'
+
+        // console.log(this.gameId)
     }
 
     humanPlay(){
@@ -66,7 +71,8 @@ class Game {
                 this.cellList[+id].innerHTML = `${player}`
                 this.cellList[+id].classList.add('active')
                 if(this.turnCount === this.limit && !this.checkWinner(this.board,player) && !this.checkWinner(this.board, ai)){
-                    result.innerHTML = `Draw!`
+                    result.innerHTML = `<span style ="color:var(--bg-green)">DRAW</span> in ${this.turnCount} moves`
+                    this.gameId++
                     popup.classList.add('show')
                     newGame.classList.add('show')
                     if(popup.classList.contains('show')){
@@ -74,7 +80,8 @@ class Game {
                     return
                 }
                 if(this.checkWinner(this.board,player)){
-                    result.innerHTML = `You win!`
+                    result.innerHTML = `<span style ="color:var(--bg-green)">YOU</span> won the game in ${this.turnCount} moves`
+                    this.gameId++
                     popup.classList.add('show')
                     newGame.classList.add('show')
                     if(popup.classList.contains('show')){
@@ -93,7 +100,8 @@ class Game {
         this.cellList[bestMove.index].innerHTML = `${ai}`
         this.cellList[bestMove.index].classList.add('active')
         if (this.turnCount >= this.limit) {
-          result.innerHTML = `Draw!`
+          result.innerHTML = `<span style ="color:var(--bg-green)">DRAW</span> in ${this.turnCount} moves`
+          this.gameId++
           popup.classList.add('show')
           newGame.classList.add('show')
           if(popup.classList.contains('show')){
@@ -101,7 +109,8 @@ class Game {
           return
         }
         if (this.checkWinner(this.board, ai)) {
-          result.innerHTML = `AI win!`
+          result.innerHTML = `<span style ="color:var(--bg-green)">СOMPUTER</span> won the game in ${this.turnCount} moves`
+          this.gameId++
           popup.classList.add('show')
           newGame.classList.add('show')
           if(popup.classList.contains('show')){
@@ -125,6 +134,7 @@ class Game {
         }
         return false
     }
+
 
     minimax(board, who){
         const emptyCells = this.findEmptyCells(board)
@@ -166,9 +176,11 @@ class Game {
               if (moves[i].score > bestScore) {
                 bestScore = moves[i].score
                 bestMove = i
+
               }
             }
-          } else {
+          }
+        else {
             let bestScore = Infinity
             for (let i = 0; i < moves.length; i++) {
               if (moves[i].score < bestScore) {
@@ -179,14 +191,17 @@ class Game {
           }
 
         return moves[bestMove]
+
     }
 
     findEmptyCells(board){
         return board.filter(c => c !== ai && c !== player)
     }
+
 }
 
 new Game()
+
 
 
 
