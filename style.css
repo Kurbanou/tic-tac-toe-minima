@@ -131,7 +131,7 @@
     transition: background-color 0.35s cubic-bezier(0.19, 1, 0.22, 1), color 0.35s cubic-bezier(0.19, 1, 0.22, 1);
   }
 
-   .scoreboard__table .table__body tr:nth-child(odd) {
+   .scoreboard__table .table__body tr:nth-child(even) {
     background-color: var(--white-o5);
   }
 
